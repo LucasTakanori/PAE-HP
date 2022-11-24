@@ -1,3 +1,5 @@
+This directory contains the following scripts:
+
 ## functions.py
 El fitxer "functions.py" inclou únicament una serie de funcions que són de utilitat en els altres fitxers.
 
