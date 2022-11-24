@@ -1,5 +1,5 @@
 ## functions.py
-El fitxer "functions.py" inclou únicament una serie de funcions que són de utilitat en diversos fitxers.
+El fitxer "functions.py" inclou únicament una serie de funcions que són de utilitat en els altres fitxers.
 
 ## calc_angle.py
 El fitxer "calc_angle.py" donat un video on es mostrin dos marcadors aruco, els detecta i calcula el seu centre. A partir d'aqui fa un vector entre els dos centres i calcula el vector normal que serà el vector orientació. Cal explicitar el vector de referencia amb el que volem calcular l'angle.
