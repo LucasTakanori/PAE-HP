@@ -2,6 +2,7 @@
 
 1. High level design
 
+El filtre de Kalman l'utitzarem per filtrar el soroll blanc del senyal que ens envia el gyroscopi.
 (descripción general del funcionamiento del filtro, input, prediction, correction, circular motion)
 
 
