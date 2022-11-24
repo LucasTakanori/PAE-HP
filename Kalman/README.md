@@ -15,6 +15,7 @@
 (justificación de usar un modelo uniform y circular con aceleración constante)
 
 4. Developing the code in python
+
 (explicar porque usamos python y la libreria que vamos a hacer servir, además mencionar que hemos creado la clase Kalman que se inicializa de tal forma)
 
 
