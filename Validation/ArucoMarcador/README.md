@@ -1,4 +1,4 @@
-This directory contains the following scripts:
+Aquest directori conté els següents scripts:
 
 ## functions.py
 El fitxer "functions.py" inclou únicament una serie de funcions que són de utilitat en els altres fitxers.
