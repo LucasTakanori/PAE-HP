@@ -6,8 +6,12 @@ El filtre de Kalman l'utitzarem per filtrar el soroll blanc del senyal que ens e
 
 El filtre de kalman implementa un model predictiu del senyal y el convina amb el senyal que s'ha mesurat per fer una correció. Tant la mesura com la prediccio contenen soroll (assumim que es gaussià) que es caracteritzat per matrius de covariança. La correcció es calcula de tal manera que li dona més pes al senyal el qual la seva covariança es més petita, que en altre paraules vol dir que conté menys soroll.
 
+
+<img width="290" alt="image" src="https://user-images.githubusercontent.com/101046951/204100886-96920426-f7ed-485c-af04-e25811b3d181.png">
+
+
+
 El model queimplementarem al nostre filtre es basa en el moviment circular i uniforme perque el senyal que ens arriba del gyroscopi es la velocitat angular del robot, i el que ens interesa a nosaltres es extreure la posició angular del robot.
-(descripción general del funcionamiento del filtro, input, prediction, correction, circular motion)
 
 
 2. Low level design
