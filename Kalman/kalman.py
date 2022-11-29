@@ -8,6 +8,7 @@ class Kalman:
     def __init__(self, fs, alpha0, omega0):
         self.fs = fs
         self.t = 1/fs
+        self.encoder = [.0 , .0]
         self.state = [alpha0, omega0]
         k = KalmanFilter (dim_x=2, dim_z=2)                       #initialization
         k.x = np.array([alpha0, omega0])                          #intial state (position and velocity)
@@ -27,10 +28,19 @@ class Kalman:
         return [alpha, omega]
 
     def filter(self, measure):
+        update_encoder()
+        f1 = (self.encoder[0] + self.encoder[1]*self.t)/self.k.x[0]
+        f2 = self.encoder[1]/f.x[1]
+        self.k.F = np.array([[f1,    0.],
+                  [   0., f2] ])
         self.k.predict()
         self.k.update(self.angular_vector(self.k.x[0], measure, self.t))
         self.state = self.k.x
         return self.state[1]
+
+    def update_encoder(self):
+        # lectura de los ficheros
+        return 0
 
     def get_position(self):
         return self.state[0]
