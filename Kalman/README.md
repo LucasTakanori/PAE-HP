@@ -17,6 +17,11 @@ El model queimplementarem al nostre filtre es basa en el moviment circular i uni
 2. Low level design
 
 (descripción en detalle del sistema de ecuaciones, explicar cuales son las matrices de transición, que efectos tiene la covarianza en el resulatdo del filtro y como podemos estimarla)
+Al implementar el filtre de kalman fem servir 2 parametres per a cada sensor: la posició i la velocitat angular. Obtenim mostres a una alta frequencia (al voltant de 300Hz) i el robot rota a una velocitat moderada (maxim 2rads/segon). Aixi doncs podem calcular la màxima varicaio de l'angle entre cada mostra del giroscopi: 200Hz -> 0,005s; per tant, màxima diferència d'angle entre mostres = 2*0,005 = 0,01 rads/mostra.
+
+Aquesta baixa variació de l'angle entre mostres, junt amb les caracteristiques del motor i tracció de les rodes fan que es pugui aproximar la velocitat angular per a una constant sense ser necessari definir una acceleració. Això simplifica els calculs necessaris i les prediccions proporcionades pel filtre de kalman.
+
+Per implementar aquest filtre de kalman hem fet ús d'una llibreria de python anomendada KalmanFilter, on es defineixen posteriorment les matrius necessaries per a dur a terme la implementació circular d'aquest
 
 
 3. Uniform circular motion
