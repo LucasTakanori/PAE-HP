@@ -10,7 +10,7 @@ arucoParams = aruco.DetectorParameters_create()
 # Obrim el video de la prova
 cap = cv2.VideoCapture('./media/prova/prova2.MOV')
 
-contador = 0        # contador si primer video o segon
+contador = 0        
 vector_inicial = []
 vector_final = []
 
