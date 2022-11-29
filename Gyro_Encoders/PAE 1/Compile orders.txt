@@ -1,0 +1,5 @@
+g++ -c RobotSerial.cpp
+
+g++ -c serialRobotControl.cpp
+
+g++ -o robot serialRobotControl.cpp RobotSerial.cpp /usr/lib/x86_64-linux-gnu/libpthread.so
