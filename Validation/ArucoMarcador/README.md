@@ -1,4 +1,6 @@
-Els videos es troben a la carpeta de Drive a material intern -> Team 3 Validació -> Aruco, aqui.
+Els videos per fer la demo es troben a la carpeta de Drive a material intern -> Team 3 Validació -> Aruco, [aqui](https://drive.google.com/drive/folders/13qfh2iZuN18NB4eX2Uu5K_UMZ6QVMspi)
+
+Descarregar carpeta 'media' del drive i descomprimir-la, descarregar els arxius que es vulguin probar (important tenir el arxiu functions.py). Per fer la demo, baixar-se el fitxer 
 
 
 
