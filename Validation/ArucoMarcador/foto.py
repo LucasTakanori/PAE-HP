@@ -6,7 +6,7 @@ arucoDict = aruco.Dictionary_get(aruco.DICT_6X6_50)
 arucoParams = aruco.DetectorParameters_create()
 
 # cap = cv2.VideoCapture(0) # agafem video de la webcam 
-cap = cv2.VideoCapture('./media/prova/prova5.MOV')  # obrim video del test
+cap = cv2.VideoCapture('./media/prova/prova2.MOV')  # obrim video del test
 
 contador = 0
 center = []
