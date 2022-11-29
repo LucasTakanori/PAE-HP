@@ -1,3 +1,7 @@
+Els videos es troben a la carpeta de Drive a material intern -> Team 3 Validació -> Aruco, aqui.
+
+
+
 Aquest directori conté els següents scripts:
 
 ## functions.py
