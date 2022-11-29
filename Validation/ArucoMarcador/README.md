@@ -13,6 +13,9 @@ En el mateix diretori ha d'estar el codi 'functions.py', 'foto.py' o 'video.py i
   - pip install opencv-python
   - pip install opencv-contrib-python
   
+  
+  
+  
 
 Aquest directori conté els següents scripts:
 
