@@ -6,7 +6,7 @@ Para simplificar, se asume que la velocidad de las ruedas es constante, lo cual 
 
 $$ d_{center} = \frac{d_{left}-d_{right}}{2} $$
 
-Diremos que la rotación en radianes sobre $\Delta t$ es $\phi$. Siendo $r_{left}$, la distancia entre el centro del arco de desplazamiento de nuestro robot y su rueda izquierda y $r_{right}$ la misma distancia para la rueda derecha. Por lo tanto tenemos que $d_{left} = \phi{ \vb{r_{left}} }$ y $d_{right} = \phi{ \vb{r_{right}} }$. También, $r_{left} = r_{left} + d_{wheels}$ donde $d_{wheels}$ es la distancia entre las ruedas del robot. Obteneiendo la siguiente ecuación:
+Diremos que la rotación en radianes sobre $\Delta t$ es $\phi$. Siendo $r_{left}$, la distancia entre el centro del arco de desplazamiento de nuestro robot y su rueda izquierda y $r_{right}$ la misma distancia para la rueda derecha. Por lo tanto tenemos que $d_{left} = \phi{ r_{left} }$ y $d_{right} = \phi{ r_{right} }$. También, $r_{left} = r_{left} + d_{wheels}$ donde $d_{wheels}$ es la distancia entre las ruedas del robot. Obteneiendo la siguiente ecuación:
 
 $$ \phi = \frac{d_{right}-d_{left}}{d_{wheels}} $$
 
