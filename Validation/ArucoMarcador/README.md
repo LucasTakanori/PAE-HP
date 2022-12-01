@@ -6,7 +6,7 @@ Descarregar carpeta 'media' del drive i descomprimir-la, descarregar els arxius 
 
 
 En el mateix diretori ha d'estar el codi 'functions.py', 'foto.py' o 'video.py i la carpeta media descomprimida. Per fer la demo s'ha d'executar el script foto.py o el script video.py:
-  - Si volem executar el script 'foto.py', un cop fem run cal prèmer la tecla 'k' per prendre la primera foto del video (posició inicial) i caldrà tornar a prèmer la tecla 'k' un altre cop quan s'hagi mogut el plat per prendre la última foto del video (posició inicial). Això calcularà l'angle i el mostrara per pantalla.
+  - Si volem executar el script 'foto.py', un cop fem run cal prèmer la tecla 'k' per prendre la primera foto del video (posició inicial) i caldrà tornar a prèmer la tecla 'k' un altre cop quan s'hagi mogut el plat per prendre la última foto del video (posició final). Això calcularà l'angle i el mostrara per pantalla.
   - Si volem executar el script 'video.py', un cop fem run cal prèmer la tecla 'k' per començar a prendre un troç de video i tornar a prèmer la tecla 'k' per deixar d'agafar video de la posició inicial. Després tornar a prèmer tecla 'k' quan s'hagi mogut el plat per tornar a començar a prendre un troç de video i tornar a prèmer la tecla 'k' per deixar d'agafar video de la posició final.
 
 **Important:** per executar el codi cal descarregar dues llibreries de python amb les següents comandes:
