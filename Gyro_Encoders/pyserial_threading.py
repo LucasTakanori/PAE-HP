@@ -17,18 +17,14 @@ def my_Serial():
         time.sleep(0.5)
         data = ser.read(6)
         ser.flushInput()
-        #data_encoder = data.decode('utf8')
-        data_encoder = int.from_bytes(data, "little", signed=False)
-        #print(data_encoder)
-        print(count , data)
         z = list(data)
-        #x = int(list[1])+int(list[0])*255
         info = [data[i:i + 2] for i in range(0, len(data), 2)]
         if len(info)!=0:
             x = int.from_bytes(info[0], "little", signed=True)
-            print(x)
+            y = int.from_bytes(info[1], "little", signed=True)
+            theta = float(int.from_bytes(info[0], "little", signed=True))/10000 # we undo the scale implemented in Arduino, must be tha same
+            print(x, y, theta)
 
-        count = count + 1
 
 my_Serial()
 
