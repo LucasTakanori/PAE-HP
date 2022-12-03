@@ -5,7 +5,7 @@ import serial
 import threading
 import time
 
-global uart
+
 uart = True
 
 def my_Serial():
@@ -17,7 +17,6 @@ def my_Serial():
         time.sleep(0.5)
         data = ser.read(6)
         ser.flushInput()
-        z = list(data)
         info = [data[i:i + 2] for i in range(0, len(data), 2)]
         if len(info)!=0:
             x = int.from_bytes(info[0], "little", signed=True)

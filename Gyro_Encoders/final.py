@@ -1,12 +1,11 @@
 from math import nan
-import numpy as np
 import matplotlib.pyplot as plt
 
 import time
 import board
 import gyro
 import RPi.GPIO as GPIO
-from encoder import Encoder
+import encoder
 
 import sys 
 sys.path.append('./Kalman')
@@ -15,10 +14,10 @@ import kalman as kal
 GPIO.setmode(GPIO.BCM)
 
 
-i2c = board.I2C()  # uses board.SCL and board.SDA
+i2c = board.I2C()   # uses board.SCL and board.SDA
 gyro = gyro.Gyro(i2c)
 
-e = Encoder.Encoder()
+e = encoder.Encoder()
 
 fs = 100
 
@@ -39,12 +38,14 @@ def graph(fs,array_d,array_o):
 if __name__ == "__main__"():
     try:
         while True:
-            angle_enc,state = Encoder.connect_raspi()
-            e.set_values(angle_enc,state) #x,y
-            time.sleep(5)
+            e.start()   # start the thread
+            e.join()    # wait for the thread to finish
+            yaw_e = e.yaw
+            state_e = e.state
             print("Value of encoders is {}".format(e.x,e.y))
+            time.sleep(5)
 
-            angle = gyro.calibrate(e.state)
+            angle = gyro.calibrate(state_e)
             print(angle)    # >> 2&1 dades_gyro.txt
 
             if angle != nan :
@@ -62,7 +63,6 @@ if __name__ == "__main__"():
 
     except Exception:
         pass
-
     
     GPIO.cleanup()
 
