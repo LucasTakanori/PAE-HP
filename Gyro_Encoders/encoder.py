@@ -35,7 +35,7 @@ class Encoder(Thread):
             data = ser.read(8)
             ser.flushInput()
             info = [data[i:i + 2] for i in range(0, len(data), 2)]
-            if len(info)!=0:
+            if len(info)==4:
                 x = int.from_bytes(info[0], "little", signed=True)
                 y = int.from_bytes(info[1], "little", signed=True)
                 theta = float(int.from_bytes(info[2], "little", signed=False))/10000 # we undo the scale implemented in Arduino, must be tha same
