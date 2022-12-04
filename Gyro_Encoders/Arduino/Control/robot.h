@@ -6,7 +6,7 @@
 const long deltaT = 50000;
 
 //Physical robot constants
-const int ticksPerRev = 51200, wheelCirc = 450, wheelDist = 250;
+const int ticksPerRev = 51200, wheelCirc = 768, wheelDist = 287;
 
 //Encoder pins
 #define R_ENCODER_A 3

@@ -11,6 +11,7 @@ class DifferentialDrive {
             void getPosition(double &x, double &y, double &theta);
             void updatePosition();
             void resetPosition();
+            void update();
 
     private:
             int _wheelCirc;

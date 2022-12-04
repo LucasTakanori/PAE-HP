@@ -18,6 +18,7 @@ Encoder::Encoder(int encoderA, int encoderB, long deltaT, int ticksPerRev) {
     pinMode(_encoderB, INPUT);
 }
 
+//Must be called every _deltaT to return accurate speed
 int Encoder::getSpeed() {
     _oldCount = _newCount;
     _newCount = _count;
@@ -39,6 +40,7 @@ int Encoder::getSpeed() {
     return degPerSec;
 }
 
+// should be called regularly to prevent overflows in _totalCount
 int Encoder::getDistance(){
     int distance = _degPerTick * _totalCount;
     _totalCount = 0;
