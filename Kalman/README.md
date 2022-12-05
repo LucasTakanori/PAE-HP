@@ -18,7 +18,7 @@ El model queimplementarem al nostre filtre es basa en el moviment circular i uni
 2. Low level design
 
 
-<img width="461" alt="image" src="https://user-images.githubusercontent.com/101046951/204526480-5fb30aed-b356-4ed2-9db4-fa94a2a831ca.png">
+<img width="309" alt="image" src="https://user-images.githubusercontent.com/101046951/205762086-a3c857af-292e-47e5-906f-c8165af54f81.png">
 
 **-Input:**
 
