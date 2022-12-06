@@ -57,6 +57,13 @@ Per implementar aquest filtre de kalman hem fet ús d'una llibreria de python an
 
 4. Developing the code in python
 
+Per implemntar tot el digrama de blocs amb les respectives equacions farem servir la llibreria de python **Filterpy**. Aquesta llibreria ens facilita molt el nostre treball perquè ja implementa totes les equacions, nomes es te que inicialitzar indicant el ordre del vector estat, en el nostre cas es un vectro de dimensió 2, les matrius de transició i les matrius de covariança. Després el process iteratiu es fa mitjançant la trucada de algunes funcions.
+
+**IMPORTANT!** Per fer servir aquesta llibreria, primer es té que descarregar fent servir la següent comanda:
+```
+pip install filterpy
+```
+
 (explicar porque usamos python y la libreria que vamos a hacer servir, además mencionar que hemos creado la clase Kalman que se inicializa de tal forma)
 
 
