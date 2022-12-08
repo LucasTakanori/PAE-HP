@@ -20,3 +20,5 @@ y^{'} & = & y + d_{center}sin(\theta) \\
 \theta^{'} & = &  \theta + \phi
 \end{array} $$
 
+## Encoders
+Un encoder es un dispositivo que produce señales, con las cuales podemos saber varios aspectos de un motor, como la posición, la dirección de giro y la velocidad; en nuestro caso, nuestrros encoders tienen canales $A, B$ y $I$; además de tener sus complementarios, los cuales son útiles para reducir el ruido del señal en el caso que tengamos que procesar la señal a una larga distáncia, el cual no es nuestro caso. Además cabe destacar qque el canal $I$, nos indica cuando se ha hecho una revolución completa del eje del encoder. En nuestro caso una revolución completa de la rueda de nuestro robot corresponde a 50 ticks del canal I.
