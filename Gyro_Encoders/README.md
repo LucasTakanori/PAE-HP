@@ -12,8 +12,11 @@ Diremos que la rotación en radianes sobre $\Delta t$ es $\phi$. Siendo $r_{left
 
 $$ \phi = \frac{d_{right}-d_{left}}{d_{wheels}} $$
 
-En resumen, nuestras equaciones de odometria para $ (x^{'}, y^{'}, \theta^{'}) $ se reducen a:
+En resumen, nuestras equaciones de odometria para $(x^{'}, y^{'}, \theta^{'})$ se reducen a:
 
-$$ x^{'} = x + d_{center}cos(\theta) $$
-$$ y^{'} = y + d_{center}sin(\theta) $$
-$$ \theta^{'} = \theta + \phi $$
+$$ \begin{array}{rcl}
+x^{'} & = & x + d_{center}cos(\theta) \\
+y^{'} & = & y + d_{center}sin(\theta) \\
+\theta^{'} & = &  \theta + \phi
+\end{array} $$
+
