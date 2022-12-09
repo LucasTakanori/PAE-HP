@@ -29,4 +29,7 @@ y^{'} & = & y + d_{center}sin(\theta) \\
 \theta^{'} & = &  \theta + \phi
 \end{array} $$
 
+## ¿Por qué utilizamos arduino?
+
+En un principio intentamos utilizar nuestro controlador principal (una Raspberry Pi), para hacer el conteo de los ticks de los encoders, sin embargo, no era posible contar todo el número de ticks que se producían, teniamos un miscount; buscando soluciones, encontramos que la forma más fácil de evitar el problema como se puede ver en las respuestas de [Reading a high speed rotary encoder](https://electronics.stackexchange.com/questions/469008/reading-a-high-speed-rotary-encoder-with-a-raspberry-pi), es utilizar un microcontrolador que se dedique a contar los ticks de los encoders y de ser posible que soporte interrupciones a nivel de hardware a una alta velocidad. Debido a que teniamos a nuestra disposición un Arduino Uno el cual cumplía con estas características optamos por utilzar este, por lo tanto debemos hacer una comunicación entre Arduino y Raspberry.
 
