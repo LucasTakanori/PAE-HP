@@ -1,3 +1,12 @@
+# Encoders
+Un encoder es un dispositivo que produce señales, con las cuales podemos saber varios aspectos de un motor, como la posición, la dirección de giro y la velocidad; en nuestro caso, nuestrros encoders tienen canales $A, B$ y $I$; además de tener sus complementarios, los cuales son útiles para reducir el ruido del señal en el caso que tengamos que procesar la señal a una larga distáncia, el cual no es nuestro caso. Además cabe destacar qque el canal $I$, nos indica cuando se ha hecho una revolución completa del eje del encoder. En nuestro caso una revolución completa de la rueda de nuestro robot corresponde a 50 ticks del canal $I$.
+
+Los ticks de los encoders, nos permiten determinar cuánto ha girado cada rueda (tanto la izquierda como la derecha). Como sabemos el radio de cada rueda, podemos usar los datos de ticks y los datos del radio de la rueda para determinar la distancia recorrida por cada rueda. Usando la siguiente ecuación:
+
+$$\text{Distance a wheel has traveled} = 2 \pi\cdot\text{radius of the wheel} \cdot\frac{\text{number of ticks}}{\text{number of ticks per revolution}}$$
+
+Conocer la distancia recorrida por cada rueda nos ayuda a determinar dónde se encuentra el robot en su entorno con respecto a una ubicación inicial. Este proceso se conoce como odometría.
+
 ## Odometria
 
 Toda la información de esta parte está basada en  [A Primer on Odometry and Motor Control](https://ocw.mit.edu/courses/6-186-mobile-autonomous-systems-laboratory-january-iap-2005/resources/odomtutorial/) del MIT.
@@ -11,4 +20,16 @@ $$ d_{center} = \frac{d_{left}-d_{right}}{2} $$
 Diremos que la rotación en radianes sobre $\Delta t$ es $\phi$. Siendo $r_{left}$, la distancia entre el centro del arco de desplazamiento de nuestro robot y su rueda izquierda y $r_{right}$ la misma distancia para la rueda derecha. Por lo tanto tenemos que $d_{left} = \phi{ r_{left} }$ y $d_{right} = \phi{ r_{right} }$. También, $r_{left} = r_{left} + d_{wheels}$ donde $d_{wheels}$ es la distancia entre las ruedas del robot. Obteneiendo la siguiente ecuación:
 
 $$ \phi = \frac{d_{right}-d_{left}}{d_{wheels}} $$
+
+En resumen, nuestras equaciones de odometria para $(x^{'}, y^{'}, \theta^{'})$ se reducen a:
+
+$$ \begin{array}{rcl}
+x^{'} & = & x + d_{center}cos(\theta) \\
+y^{'} & = & y + d_{center}sin(\theta) \\
+\theta^{'} & = &  \theta + \phi
+\end{array} $$
+
+## ¿Por qué utilizamos arduino?
+
+En un principio intentamos utilizar nuestro controlador principal (una Raspberry Pi), para hacer el conteo de los ticks de los encoders, sin embargo, no era posible contar todo el número de ticks que se producían, teniamos un miscount; buscando soluciones, encontramos que la forma más fácil de evitar el problema como se puede ver en las respuestas de [Reading a high speed rotary encoder](https://electronics.stackexchange.com/questions/469008/reading-a-high-speed-rotary-encoder-with-a-raspberry-pi), es utilizar un microcontrolador que se dedique a contar los ticks de los encoders y de ser posible que soporte interrupciones a nivel de hardware a una alta velocidad. Debido a que teniamos a nuestra disposición un Arduino Uno el cual cumplía con estas características optamos por utilzar este, por lo tanto debemos hacer una comunicación entre Arduino y Raspberry.
 

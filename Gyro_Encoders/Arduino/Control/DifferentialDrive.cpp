@@ -27,7 +27,7 @@ void DifferentialDrive::getPosition(double &x, double &y, double &theta) {
 
 void DifferentialDrive::update() {
     _leftWheel->getSpeed();
-    _leftWheel->getSpeed();
+    _rightWheel->getSpeed();
     updatePosition();
 }
 

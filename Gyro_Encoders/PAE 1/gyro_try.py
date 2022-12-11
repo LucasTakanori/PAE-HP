@@ -30,7 +30,7 @@ while time.time_ns - first_time < 100000000:
 	bias = bias +  mpu.gyro[2]
 	mitja = mitja + 1
 
-bias = bias / 300
+bias = bias / mitja
 print (bias)
 dt = (time.time_ns - first_time)*10^-9
 print (bias * dt)
