@@ -35,7 +35,27 @@ En un principio intentamos utilizar nuestro controlador principal (una Raspberry
 
 ## Código
 
-Como hemos dicho anteriormente, utilizamos Arduino para calcular los diferentes estados de nuestro robot, para ello hemos implementado una pequeña libreria llamada *Controller*, dentro de ella destaca la cabecera robot.h, donde se definen las varias constantes del robot como los ticks totales por revolución, la distáncia entre las ruedas, la circumferencia de las ruedas en milímetros, así como los pines a los que debemos conectar los canales de los encoders.
+Como hemos dicho anteriormente, utilizamos Arduino para calcular los diferentes estados de nuestro robot, para ello hemos implementado una pequeña libreria llamada *Control*, dentro de ella destaca la cabecera robot.h, donde se definen las varias constantes del robot como los ticks totales por revolución, la distáncia entre las ruedas, la circumferencia de las ruedas en milímetros, así como los pines a los que debemos conectar los canales de los encoders.
+
+```c
+//Different constants used for the robot calculation
+#ifndef robot_h
+#define robot_h
+
+//delta T used for calculations, is defined in microseconds
+const long deltaT = 50000;
+
+//Physical robot constants
+const int ticksPerRev = 51200, wheelCirc = 768, wheelDist = 287;
+
+//Encoder pins
+#define R_ENCODER_A 3 //defined as Arduino digital pin interrupt
+#define R_ENCODER_B 5
+#define L_ENCODER_A 2 //defined as Arduino digital pin interrupt
+#define L_ENCODER_B 4
+
+#endif
+```
 
 ### ¿Cómo recibimos los datos?
 
