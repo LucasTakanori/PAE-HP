@@ -9,9 +9,9 @@ const long deltaT = 50000;
 const int ticksPerRev = 51200, wheelCirc = 768, wheelDist = 287;
 
 //Encoder pins
-#define R_ENCODER_A 3
+#define R_ENCODER_A 3 //defined as Arduino digital pin interrupt
 #define R_ENCODER_B 5
-#define L_ENCODER_A 2
+#define L_ENCODER_A 2 //defined as Arduino digital pin interrupt
 #define L_ENCODER_B 4
 
 #endif
