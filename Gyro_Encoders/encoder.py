@@ -32,14 +32,13 @@ class Encoder(Thread):
         count=0
         while True:
             time.sleep(0.5)
-            data = ser.read(8)
-            ser.flushInput()
-            info = [data[i:i + 2] for i in range(0, len(data), 2)]
-            if len(info)==4:
-                x = int.from_bytes(info[0], "little", signed=True)
-                y = int.from_bytes(info[1], "little", signed=True)
-                theta = float(int.from_bytes(info[2], "little", signed=False))/10000 # we undo the scale implemented in Arduino, must be tha same
-                state = bool(int.from_bytes(info[3], "little", signed=False))    # fins que no passem l'estat també, si es diferent de 0, serà true
+            data = ser.read(9)
+            #info = [data[i:i + 2] for i in range(0, len(data), 2)]
+            if len(data)==9:
+                x = int.from_bytes(data[0:1], "little", signed=True)
+                y = int.from_bytes(data[2:3], "little", signed=True)
+                theta = float(int.from_bytes(data[4:7], "little", signed=False))/10000 # we undo the scale implemented in Arduino, must be tha same
+                state = bool(int.from_bytes(data[8], "little", signed=False))    # fins que no passem l'estat també, si es diferent de 0, serà true
                 print(x, y, theta, state)
                 self.set_values(x,y,theta,state)
 

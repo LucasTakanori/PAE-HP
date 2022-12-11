@@ -1,4 +1,3 @@
-
 #include <DifferentialDrive.h>
 #include <Encoder.h>
 #include <robot.h>
@@ -75,7 +74,6 @@ void readCommandPacket() {
 
     commandReceived = true;
     lastCommandTime = millis();
-    Serial.println("HI");
   }
   else if (result > 0) {
     Serial.println("Incomplete command");
@@ -87,23 +85,22 @@ void readCommandPacket() {
 // sends values as ints broken into 2 byte pairs, least significant byte first
 void sendPacket() {
   robot.getPosition(x, y, theta);
-  byte buffer[8];
-  //x=0;
-  //y=10;
-  //theta=0.5;
+  byte buffer[9];
+  float yaw = theta * 180.0 / M_PI;
   int sendX = (int)x;
   int sendY = (int)y;
-  int sendTheta = (int)(theta*10000);
-  buffer[0] = (byte)(sendX & 0xFF);
-  buffer[1] = (byte)((sendX >> 8) & 0xFF);
-  buffer[2] = (byte)(sendY & 0xFF);
-  buffer[3] = (byte)((sendY >> 8) & 0xFF);
-  buffer[4] = (byte)(sendTheta & 0xFF);
-  buffer[5] = (byte)((sendTheta >> 8) & 0xFF);
-  buffer[6] = (byte)(still & 0xFF);
-  buffer[7] = (byte)((still >> 8) & 0xFF);
-  Serial.write(buffer, 8);
-  //Serial.println();
+  uint32_t sendTheta = (uint32_t)(yaw*1000);
+  buffer[0] = (sendX & 0xFF);
+  buffer[1] = ((sendX >> 8) & 0xFF);
+  buffer[2] = (sendY & 0xFF);
+  buffer[3] = ((sendY >> 8) & 0xFF);
+  buffer[4] = (sendTheta & 0xFF);
+  buffer[5] = ((sendTheta >> 8) & 0xFF);
+  buffer[6] = ((sendTheta >> 16) & 0xFF);
+  buffer[7] = ((sendTheta >> 24) & 0xFF);
+  buffer[8] = (still & 0xFF);
+  Serial.write(buffer, 9);
+  //Serial.println(sendTheta);
 }
 
 void readLEncoder() {
@@ -119,7 +116,5 @@ void readREncoder() {
 void adjust() {
   robot.update();
 }
-
-
 
 

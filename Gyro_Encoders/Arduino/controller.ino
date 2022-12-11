@@ -19,9 +19,7 @@ DifferentialDrive robot(&lEncoder, &rEncoder, wheelCirc, wheelDist);
 double x, y;
 double theta;
 unsigned long lastCommandTime, currentTime;
-
-int translational;
-double angular;
+int still;
 
 void setup() {
   Serial.begin(9600); //Start serial with Raspberry Pi
@@ -37,19 +35,23 @@ void setup() {
   commandReceived = false;
   lastCommandTime = millis();
   currentTime = millis();
-  translational = 0;
-  angular = 0.0;
+  still = 1;
 }
 
 void loop() {
-  //check if a command oacket is available to read
-  readCommandPacket();
+  //check if a command packet is available to read
+  //readCommandPacket();
+  //sendPacket();
 
   currentTime=millis();
 
-  if (currentTime - lastCommandTime > 1000) {
-    Serial.println("Command not recieved for 1 second");
-    lastCommandTime = millis();
+  if (Serial.available()<=0) {
+    if (currentTime - lastCommandTime > 500) {
+    //Serial.println("Command not recieved for 1 second");
+      sendPacket();
+      still=1;
+      lastCommandTime = millis();
+    }
   }
 
 }
@@ -58,6 +60,7 @@ void loop() {
 void readCommandPacket() {
   byte buffer[4];
   int result = Serial.readBytes((char*)buffer, 4);
+  //Serial.println(result);
 
   if (result == 4) { //correct number of bytes recieved
     int commands[2];
@@ -67,9 +70,7 @@ void readCommandPacket() {
       int firstByte = buffer[2*i];
       int secondByte = buffer[(2*i) + 1];
       commands[i] = (secondByte << 8) | firstByte;
-    }
-    translational = commands[0];
-    angular = (double)commands[1] / 1000.0; //Convert recieved int to double 
+    } 
 
     commandReceived = true;
     lastCommandTime = millis();
@@ -84,31 +85,36 @@ void readCommandPacket() {
 // sends values as ints broken into 2 byte pairs, least significant byte first
 void sendPacket() {
   robot.getPosition(x, y, theta);
-  byte buffer[22];
+  byte buffer[9];
+  float yaw = theta * 180.0 / M_PI;
   int sendX = (int)x;
   int sendY = (int)y;
-  int sendTheta = (int)(theta*1000.0);
-  buffer[16] = (byte)(sendX & 0xFF);
-  buffer[17] = (byte)((sendX >> 8) & 0xFF);
-  buffer[18] = (byte)(sendY & 0xFF);
-  buffer[19] = (byte)((sendY >> 8) & 0xFF);
-  buffer[20] = (byte)(sendTheta & 0xFF);
-  buffer[21] = (byte)((sendTheta >> 8) & 0xFF);
-  Serial.write(buffer, 22);
+  uint32_t sendTheta = (uint32_t)(yaw*1000);
+  buffer[0] = (sendX & 0xFF);
+  buffer[1] = ((sendX >> 8) & 0xFF);
+  buffer[2] = (sendY & 0xFF);
+  buffer[3] = ((sendY >> 8) & 0xFF);
+  buffer[4] = (sendTheta & 0xFF);
+  buffer[5] = ((sendTheta >> 8) & 0xFF);
+  buffer[6] = ((sendTheta >> 16) & 0xFF);
+  buffer[7] = ((sendTheta >> 24) & 0xFF);
+  buffer[8] = (still & 0xFF);
+  Serial.write(buffer, 9);
+  //Serial.println(sendTheta);
 }
 
 void readLEncoder() {
   lEncoder.updateCount();
+  still = 0;
 }
 
 void readREncoder() {
   rEncoder.updateCount();
+  still = 0;
 }
 
 void adjust() {
-  robot.updatePosition();
+  robot.update();
 }
-
-
 
 

@@ -87,11 +87,7 @@ void readCommandPacket() {
 void sendPacket() {
   robot.getPosition(x, y, theta);
   byte buffer[9];
-  //x=7000;
-  //y=10;
-  //theta = 3.151;
   float yaw = theta * 180.0 / M_PI;
-  //yaw = 359.689;
   int sendX = (int)x;
   int sendY = (int)y;
   uint32_t sendTheta = (uint32_t)(yaw*1000);
@@ -104,7 +100,7 @@ void sendPacket() {
   buffer[6] = ((sendTheta >> 16) & 0xFF);
   buffer[7] = ((sendTheta >> 24) & 0xFF);
   buffer[8] = (still & 0xFF);
-  Serial.write(buffer, 10);
+  Serial.write(buffer, 9);
   //Serial.println(sendTheta);
 }
 
