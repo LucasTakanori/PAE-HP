@@ -39,8 +39,8 @@ void DifferentialDrive::updatePosition() {
     double dCenter = (dLeft - dRight)/2.0;
     double phi = (dRight - dLeft) / (double)_wheelDistance;
     _theta += phi;
-    if (_theta > 2.0 * pi)
-        _theta -= 2.0*pi;
+    if (_theta > 2.0 * M_PI)
+        _theta -= 2.0*M_PI;
     if (_theta < 0.0) 
         _theta = 0.0;
     _xPosition += dCenter*cos(_theta);
