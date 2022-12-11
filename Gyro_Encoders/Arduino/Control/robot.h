@@ -2,7 +2,7 @@
 #ifndef robot_h
 #define robot_h
 
-//delta T used for calculations
+//delta T used for calculations, is defined in microseconds
 const long deltaT = 50000;
 
 //Physical robot constants
