@@ -46,7 +46,7 @@ void loop() {
   currentTime=millis();
 
   if (Serial.available()<=0) {
-    if (currentTime - lastCommandTime > 500) {
+    if (currentTime - lastCommandTime > 1000) {
     //Serial.println("Command not recieved for 1 second");
       sendPacket();
       still=1;

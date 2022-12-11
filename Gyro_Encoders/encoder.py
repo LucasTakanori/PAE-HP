@@ -38,7 +38,7 @@ class Encoder(Thread):
                 x = int.from_bytes(data[0:1], "little", signed=True)
                 y = int.from_bytes(data[2:3], "little", signed=True)
                 theta = float(int.from_bytes(data[4:7], "little", signed=False))/1000 # we undo the scale implemented in Arduino, must be tha same
-                state = bool(int.from_bytes(data[8], "little", signed=False))    # fins que no passem l'estat també, si es diferent de 0, serà true
+                state = bool(data[8])    # fins que no passem l'estat també, si es diferent de 0, serà true
                 print(x, y, theta, state)
                 self.set_values(x,y,theta,state)
 
