@@ -6,6 +6,7 @@ import board
 import gyro
 import RPi.GPIO as GPIO
 import encoder
+import serial
 
 import sys 
 sys.path.append('./Kalman')
@@ -37,29 +38,39 @@ def graph(fs,array_d,array_o):
 
 if __name__ == "__main__"():
     try:
+        port = "/dev/ttyACM0"   # defines the Arduino port COM3 on windows, /dev/ttyACM0 on linux
+        ser = serial.Serial(port, baudrate=9600, timeout=0)
         while True:
-            e.start()   # start the thread
-            e.join()    # wait for the thread to finish
-            yaw_e = e.yaw
-            state_e = e.state
-            print("Value of encoders is {}".format(e.x,e.y))
-            time.sleep(5)
+            data = ser.read(9)
+            # info = [data[i:i + 2] for i in range(0, len(data), 2)]
+            if len(data)==9:    # it receives data from the arduino
+                x = int.from_bytes(data[0:1], "little", signed=True)
+                y = int.from_bytes(data[2:3], "little", signed=True)
+                theta = float(int.from_bytes(data[4:7], "little", signed=False))/1000   # we undo the scale implemented in Arduino, must be tha same
+                state = bool(data[8])   # until the state is obtained, if it's not 0, it will be True
+                print(x, y, theta, state)
+                e.set_values(x,y,theta,state)      
+                print("Value of encoders is {}".format(e.x,e.y))
+                time.sleep(5)
 
-            angle = gyro.calibrate(state_e)
-            print(angle)    # >> 2&1 dades_gyro.txt
+                angle = gyro.calibrate(e.state)
+                print(angle)    # >> 2&1 dades_gyro.txt
 
-            if angle != nan :
-                print("Yaw angle in º/sec before kalman filter: %.2f"%gyro.get_angle())
-                gyro_angles.append(gyro.get_angle())
-                gyro_state = kalman_gyro.filter(angle)
-                output_angles.append(gyro_state)
-                print("Angle turned: {}".format(gyro_state))
-            else:
-                graph(fs,gyro_angles,output_angles)
-                #gyro_angles = []
-                #output_angles = []
+                if angle != nan :
+                    print("Yaw angle in º/sec before kalman filter: %.2f"%gyro.get_angle())
+                    gyro_angles.append(gyro.get_angle())
+                    gyro_state = kalman_gyro.filter(angle)
+                    output_angles.append(gyro_state)
+                    print("Angle turned: {}".format(gyro_state))
+                else:
+                    graph(fs,gyro_angles,output_angles)
+                    f = open ('holamundo.txt','w')
+                    f.write(f"gyro angles: {gyro_angles}\nfiltered angles: {output_angles}")
+                    f.close()
+                    gyro_angles = []
+                    output_angles = []
 
-                # guardar angles d'una mateixa mesura quan m'hagi donat angle = nan
+                    # save angles when angle = nan
 
     except Exception:
         pass
