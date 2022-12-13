@@ -33,3 +33,30 @@ y^{'} & = & y + d_{center}sin(\theta) \\
 
 En un principio intentamos utilizar nuestro controlador principal (una Raspberry Pi), para hacer el conteo de los ticks de los encoders, sin embargo, no era posible contar todo el número de ticks que se producían, teniamos un miscount; buscando soluciones, encontramos que la forma más fácil de evitar el problema como se puede ver en las respuestas de [Reading a high speed rotary encoder](https://electronics.stackexchange.com/questions/469008/reading-a-high-speed-rotary-encoder-with-a-raspberry-pi), es utilizar un microcontrolador que se dedique a contar los ticks de los encoders y de ser posible que soporte interrupciones a nivel de hardware a una alta velocidad. Debido a que teniamos a nuestra disposición un Arduino Uno el cual cumplía con estas características optamos por utilzar este, por lo tanto debemos hacer una comunicación entre Arduino y Raspberry.
 
+## Código
+
+Como hemos dicho anteriormente, utilizamos Arduino para calcular los diferentes estados de nuestro robot, para ello hemos implementado una pequeña libreria llamada *Control*, dentro de ella destaca la cabecera robot.h, donde se definen las varias constantes del robot como los ticks totales por revolución, la distáncia entre las ruedas, la circumferencia de las ruedas en milímetros, así como los pines a los que debemos conectar los canales de los encoders.
+
+```c
+//Different constants used for the robot calculation
+#ifndef robot_h
+#define robot_h
+
+//delta T used for calculations, is defined in microseconds
+const long deltaT = 50000;
+
+//Physical robot constants
+const int ticksPerRev = 51200, wheelCirc = 768, wheelDist = 287;
+
+//Encoder pins
+#define R_ENCODER_A 3 //defined as Arduino digital pin interrupt
+#define R_ENCODER_B 5
+#define L_ENCODER_A 2 //defined as Arduino digital pin interrupt
+#define L_ENCODER_B 4
+
+#endif
+```
+
+### ¿Cómo recibimos los datos?
+
+El código encargado de la comunicación serial entre Arduino y Python es encoder.py, de los cuales obtenemos, la posición x e y en milímetros del robot (suponiendo un estado inicial (0, 0)), el ángulo (heading del robot) expresado en grados y con tres decimales y finalmente el estado del robot, un booleano que nos dice si el robot está quieto o no.
