@@ -28,7 +28,7 @@ class Kalman:
         return [alpha, omega]
 
     def filter(self, measure):
-        update_encoder()
+        #update_encoder()
         f1 = (self.encoder[0] + self.encoder[1]*self.t)/self.k.x[0]
         f2 = self.encoder[1]/f.x[1]
         self.k.F = np.array([[f1,    0.],
@@ -39,7 +39,7 @@ class Kalman:
         return self.state[1]
 
     def update_encoder(self):
-        # lectura de los ficheros
+        # read files
         return 0
 
     def get_position(self):

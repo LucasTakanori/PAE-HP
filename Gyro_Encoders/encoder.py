@@ -1,15 +1,4 @@
-
-from contextlib import nullcontext
-from math import nan
-import time
-import RPi.GPIO as GPIO
-
-# Python required library
-# pip install pyserial
-
-from threading import Thread
-
-class Encoder(Thread):
+class Encoder():
 
     def __init__(self):
         # execute the base constructor
@@ -23,6 +12,3 @@ class Encoder(Thread):
         self.y = y
         self.yaw = theta
         self.state = state  
-
-
-

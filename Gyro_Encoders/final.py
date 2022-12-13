@@ -1,7 +1,7 @@
-from math import nan
 import matplotlib.pyplot as plt
 
 import time
+from datetime import datetime
 import board
 import gyro
 import RPi.GPIO as GPIO
@@ -20,7 +20,8 @@ gyro = gyro.Gyro(i2c)
 
 e = encoder.Encoder()
 
-fs = 100
+fs = 90.909090
+dt = 1/fs
 
 gyro_angles = []
 output_angles = []
@@ -51,63 +52,27 @@ if __name__ == "__main__"():
                 print(x, y, theta, state)
                 e.set_values(x,y,theta,state)      
                 print("Value of encoders is {}".format(e.x,e.y))
-                time.sleep(5)
+                time.sleep(dt)
 
-                angle = gyro.calibrate(e.state)
+                angle = gyro.calibrate(e.state,dt)
                 print(angle)    # >> 2&1 dades_gyro.txt
 
-                if angle != nan :
+                if e.state :
                     print("Yaw angle in º/sec before kalman filter: %.2f"%gyro.get_angle())
                     gyro_angles.append(gyro.get_angle())
                     gyro_state = kalman_gyro.filter(angle)
                     output_angles.append(gyro_state)
-                    print("Angle turned: {}".format(gyro_state))
-                else:
+                    print(f"Angle turned: {gyro_state}")
+                elif len(gyro_angles)>0:
                     graph(fs,gyro_angles,output_angles)
-                    f = open ('holamundo.txt','w')
+                    # save angles when state is moving
+                    f = open (str(datetime.now()),'w')
                     f.write(f"gyro angles: {gyro_angles}\nfiltered angles: {output_angles}")
                     f.close()
                     gyro_angles = []
                     output_angles = []
 
-                    # save angles when angle = nan
-
     except Exception:
         pass
     
     GPIO.cleanup()
-
-
-    
-
-
-
-
-
-
-""" 
-
-# Lectura de fichero de prueba
-fichero = 'datos3.txt'
-datos = kalman.lectura(fichero)
-fs = 100
-t = 1/fs
-longitud = len(datos)
-tiempo = np.arange(0, (longitud)/100, t)
-output = []
-
-kal = kalman.Kalman(fs, 0, 0, t)
-
-for i in range(longitud):
-  kal.filtrar(datos[i], t)
-  output.append(kal.x[1])
-
-fig = plt.figure()
-# plt.axis([0, 10, 0, 1])
-plt.title('Data from gyroscope', fontweight='bold')
-plt.xlabel('Time')
-plt.ylabel('Velocity (rad/s)')
-plt.plot(tiempo, datos, 'k',label='noisy measurements')
-plt.plot(tiempo, output, 'r',label='Filter signal')
-plt.show()
-"""
