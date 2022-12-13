@@ -8,9 +8,10 @@ arucoParams = aruco.DetectorParameters_create()
 
 # cap = cv2.VideoCapture(0)                         # si volem agafar la webcam del portatil
 # Obrim el video de la prova
-cap = cv2.VideoCapture('./media/prova/prova2.MOV')
+# cap = cv2.VideoCapture('./media/prova/prova5.MOV')
+cap = cv2.VideoCapture('./media/prova180/IMG_3137.MOV')
 
-contador = 0        
+contador = 0        # contador si primer video o segon
 vector_inicial = []
 vector_final = []
 
