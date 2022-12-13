@@ -5,7 +5,7 @@
 //delta T used for calculations
 const long deltaT = 50000;
 
-//Physical robot constants
+//Physical robot constants, ticksPerRev depends on how we read channel A, only rise -> 51200, change-> 102400
 const int ticksPerRev = 51200, wheelCirc = 768, wheelDist = 287;
 
 //Encoder pins

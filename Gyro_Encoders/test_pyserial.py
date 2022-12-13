@@ -14,18 +14,19 @@ def my_Serial():
     ser = serial.Serial(port, baudrate=9600, timeout=0)
     count=0
     while uart:
-        time.sleep(0.2)
+        time.sleep(0.5)
         data = ser.read(9)
         info = [data[i:i + 2] for i in range(0, len(data), 2)]
         if len(data)==9:
-            ser.flush()
-            #x = int.from_bytes(info[0], "little", signed=True)
-            #y = int.from_bytes(info[1], "little", signed=True)
+            x = int.from_bytes(data[0:1], "little", signed=True)
+            y = int.from_bytes(data[2:3], "little", signed=True)
             #theta = float(int.from_bytes(info[2], "little", signed=False))/100 # we undo the scale implemented in Arduino, must be tha same
             #state = bool(int.from_bytes(info[3], "little", signed=False))
-            #theta = float(int.from_bytes(data[4:7], "little", signed=False))/1000 # we undo the scale implemented in Arduino, must be tha same
-            #state = bool(int.from_bytes(data[8], "little", signed=False))
-            print(bool(data[8]))
+            theta = float(int.from_bytes(data[4:7], "little", signed=False))/1000 # we undo the scale implemented in Arduino, must be tha same
+            state = bool(data[8])
+            print(x,y,theta, state)
+            #ser.reset_input_buffer()
+            #ser.reset_output_buffer()
 
 
 my_Serial()

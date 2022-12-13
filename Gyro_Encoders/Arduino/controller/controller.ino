@@ -23,13 +23,13 @@ int still;
 
 void setup() {
   Serial.begin(9600); //Start serial with Raspberry Pi
-  Serial.setTimeout(100);
+  //Serial.setTimeout(100);
 
   //start timer and hardware interrupts
   Timer1.initialize(deltaT);
   Timer1.attachInterrupt(adjust);
-  attachInterrupt(0, readLEncoder, CHANGE);
-  attachInterrupt(1, readREncoder, CHANGE);
+  attachInterrupt(0, readLEncoder, HIGH);
+  attachInterrupt(1, readREncoder, HIGH);
 
   //initialize state Variables
   commandReceived = false;
@@ -46,7 +46,7 @@ void loop() {
   currentTime=millis();
 
   if (Serial.available()<=0) {
-    if (currentTime - lastCommandTime > 1000) {
+    if (currentTime - lastCommandTime > 500) {
     //Serial.println("Command not recieved for 1 second");
       sendPacket();
       still=1;
