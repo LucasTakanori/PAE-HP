@@ -11,6 +11,7 @@ class Encoder {
             int getSpeed(); //returns speed in deg/seg
             int getDistance(); //return distance rotated in degrees
             void updateCount();
+            int getTicks(); //returns ticks counts
     private:
             int _encoderA, _encoderB; // encoder pins
             double _degPerTick; //degrees of output shaft rotation per encoder tick

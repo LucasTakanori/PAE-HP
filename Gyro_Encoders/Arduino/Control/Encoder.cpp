@@ -61,3 +61,9 @@ void Encoder::updateCount() {
             _count++;
     }
 }
+
+int Encoder::getTicks() {
+    int long ticks = 0;
+    ticks = _count;
+    return ticks;
+}
