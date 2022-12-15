@@ -68,3 +68,4 @@ pip install filterpy
 
 
 5. Tests
+Execute test lectura to see the results of the data coming from the Phone
