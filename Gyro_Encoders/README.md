@@ -19,6 +19,12 @@ $$\text{Distance a wheel has traveled} = 2 \pi\cdot\text{radius of the wheel} \c
 
 Knowing the distance traveled by each wheel helps us determine where the robot is in its environment with respect to an initial location. This process is known as odometry.
 
+## The different ways we intended to use the encoders
+In a first instance, we wanted to read the ticks produced in the encoders to then do the odometry calculations in the raspberry, but as we said before, the Raspberry is not able to detect all the ticks of the encoders, which we tried to resolve by using an Arduino, here we will explain what led to this decision.
+- Now we got a good reading of the encoder ticks, however, we did not find an efficient way to transmit this information quickly to the Raspberry.
+- What we thought was a good solution is to do all the calculations that are related to the encoders on the Arduino, and send the different states of the robot to Raspbery.
+
+
 ## Odometry 
 All information in this part is based on [A Primer on Odometry and Motor Control](https://ocw.mit.edu/courses/6-186-mobile-autonomous-systems-laboratory-january-iap-2005/resources/odomtutorial/) from MIT. We call $d_{left}$ the distance rotated by the left wheel over $\Delta t$, and $d_{right}$ is the same measurement for the right wheel. With these two distances we can know in the case that $d_{left}=d_{right}$ that the robot is going in a straight line. If $d_{left}\gt d_{right}$ has rotated to the right, and if $d_{left}\lt d_{right}$ has rotated to the left. We can use these measurements to calculate translation and rotation. 
 
