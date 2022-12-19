@@ -1,3 +1,5 @@
+#include <ros.h>
+
 #include <DifferentialDrive.h>
 #include <Encoder.h>
 #include <robot.h>
@@ -23,13 +25,13 @@ int still;
 
 void setup() {
   Serial.begin(9600); //Start serial with Raspberry Pi
-  //Serial.setTimeout(100);
+  Serial.setTimeout(100);
 
   //start timer and hardware interrupts
   Timer1.initialize(deltaT);
   Timer1.attachInterrupt(adjust);
-  attachInterrupt(0, readLEncoder, CHANGE);
-  attachInterrupt(1, readREncoder, CHANGE);
+  attachInterrupt(0, readLEncoder, RISING);
+  attachInterrupt(1, readREncoder, RISING);
 
   //initialize state Variables
   commandReceived = false;
@@ -39,23 +41,27 @@ void setup() {
 }
 
 void loop() {
-  //check if a command packet is available to read
+  //check if a command oacket is available to read
   //readCommandPacket();
   //sendPacket();
+  //String input = Serial.readString();
 
+  if (millis() - currentTime > 111) { //input.length()>0 millis() - currentTime > 111
   currentTime=millis();
 
-  if (Serial.available()<=0) {
-    if (currentTime - lastCommandTime > 1000) {
-    //Serial.println("Command not recieved for 1 second");
-      sendPacket();
-      still=1;
-      lastCommandTime = millis();
+    if (Serial.available()<=0) {
+      //if (currentTime - lastCommandTime > 500) {
+      //Serial.println("Command not recieved for 1 second");
+        sendPacket();
+        still=1;
+        lastCommandTime = millis();
+      //}
+      
     }
   }
+    
 
 }
-
 
 // assembles a packet to send it to Raspberry Pi
 // sends values as ints broken into 2 byte pairs, least significant byte first
@@ -75,19 +81,29 @@ void sendPacket() {
   buffer[6] = ((sendTheta >> 16) & 0xFF);
   buffer[7] = ((sendTheta >> 24) & 0xFF);
   buffer[8] = (still & 0xFF);
-  //Serial.println(theta);
   Serial.write(buffer, 9);
-  // Serial.println(sendTheta);
+  Serial.println();
+  if (false) {
+    Serial.print("X: ");
+    Serial.print(sendX);
+    Serial.print("\t");
+    Serial.print("Y: ");
+    Serial.print(sendY);
+    Serial.print("\t");
+    Serial.print("Yaw no deccimal: ");
+    Serial.println(sendTheta);
+  }
+
 }
 
 void readLEncoder() {
+  still=0;
   lEncoder.updateCount();
-  still = 0;
 }
 
 void readREncoder() {
+  still=0;
   rEncoder.updateCount();
-  still = 0;
 }
 
 void adjust() {
