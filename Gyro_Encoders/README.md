@@ -72,9 +72,11 @@ const int ticksPerRev = 51200, wheelCirc = 768, wheelDist = 287;
 
 ```mermaid
 flowchart LR
-    A([Initialize]) --> B{Encoders 'state};
+    A([Initialize]) --> B{Encoders state};
     B -- Still -->C[Calculate bias];
     B -- Not Still --> D[Get measurements from gyro];
     C --> B;
     D --> E[Calculate angle];
+    E&B --> F[Kalman Filter]
+    F--> Result
 ```
