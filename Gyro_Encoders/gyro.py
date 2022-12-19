@@ -22,7 +22,7 @@ class Gyro:
             self.mean += 1
         else:
             self.bias = self.bias/self.mean
-            self.mean = 0
+            self.mean = 1
             self.angle = self.angle + (self.gyro[2]-self.bias)*dt*self.scale
 
         return self.angle
