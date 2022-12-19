@@ -71,7 +71,7 @@ const int ticksPerRev = 51200, wheelCirc = 768, wheelDist = 287;
 ```
 
 ```mermaid
-flowchart TD
+flowchart LR
     A[Initialize] --> B{Encoder Left and Encoder Right state};
     B -- Still -->C[Calculate bias];
     B -- Not Still --> D[Get measurements from gyro];
