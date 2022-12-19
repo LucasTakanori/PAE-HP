@@ -69,3 +69,12 @@ const int ticksPerRev = 51200, wheelCirc = 768, wheelDist = 287;
 
 #endif
 ```
+
+```mermaid
+flowchart TD
+    A --> B;
+    B -- Yes -->C;
+    B -- No --> D;
+    C ----> E;
+    D ----> E;
+```
