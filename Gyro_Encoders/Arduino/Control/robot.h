@@ -3,7 +3,7 @@
 #define robot_h
 
 //delta T used for calculations, is defined in microseconds
-const long deltaT = 50000;
+const long deltaT = 100000;
 
 //Physical robot constants, ticksPerRev depends on how we read channel A, only rise -> 51200, change-> 102400
 const int ticksPerRev = 51200, wheelCirc = 768, wheelDist = 287;

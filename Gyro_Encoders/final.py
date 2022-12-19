@@ -42,9 +42,9 @@ if __name__ == "__main__"():
         port = "/dev/ttyACM0"   # defines the Arduino port COM3 on windows, /dev/ttyACM0 on linux
         ser = serial.Serial(port, baudrate=9600, timeout=0)
         while True:
-            data = ser.read(9)
+            data = ser.readline()
             # info = [data[i:i + 2] for i in range(0, len(data), 2)]
-            if len(data)==9:    # it receives data from the arduino
+            if len(data)==11:    # it receives data from the arduino
                 x = int.from_bytes(data[0:1], "little", signed=True)
                 y = int.from_bytes(data[2:3], "little", signed=True)
                 theta = float(int.from_bytes(data[4:7], "little", signed=False))/1000   # we undo the scale implemented in Arduino, must be tha same

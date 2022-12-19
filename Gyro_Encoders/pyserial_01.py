@@ -18,6 +18,7 @@ def my_Serial():
         #user_input = input()
         data=ser.readline()
         print(data)
+        print(len(data))
         x = int.from_bytes(data[0:1], "little", signed=True)
         y = int.from_bytes(data[2:3], "little", signed=True)
         theta = float(int.from_bytes(data[4:7], "little", signed=False))/1000   # we undo the scale implemented in Arduino, must be tha same
