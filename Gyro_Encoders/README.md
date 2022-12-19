@@ -76,5 +76,5 @@ flowchart TD
     B -- Still -->C[Calculate bias];
     B -- Not Still --> D[Get measurements from gyro];
     C --> E;
-    D s--> E;
+    D --> E;
 ```
