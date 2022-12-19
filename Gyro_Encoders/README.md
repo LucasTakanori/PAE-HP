@@ -77,6 +77,7 @@ flowchart LR
     B -- Not Still --> D[Get measurements from gyro];
     C --> B;
     D --> E[Calculate angle];
-    E & B --> F[Kalman Filter]
-    F--> Result
+    E & B --> F[Kalman Filter];
+    F--> G[Result];
+    G --> B;
 ```
