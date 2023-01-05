@@ -15,7 +15,7 @@ An encoder is a device that produces signals, with which we can know various asp
 
 The encoder ticks allow us to determine how much each wheel has turned (both left and right). Since we know the radius of each wheel, we can use the tick data and the wheel radius data to determine the distance traveled by each wheel. Using the following equation:
 
-$$\text{Distance a wheel has traveled} = 2 \pi\cdot\text{radius of the wheel} \cdot\frac{\text{number of ticks}}{\text{number of ticks per revolution}}$ $
+$$\text{Distance a wheel has traveled} = 2 \pi\cdot\text{radius of the wheel} \cdot\frac{\text{number of ticks}}{\text{number of ticks per revolution}}$$
 
 Knowing the distance traveled by each wheel helps us determine where the robot is in its environment with respect to an initial location. This process is known as odometry.
 
