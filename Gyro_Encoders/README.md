@@ -5,7 +5,7 @@ It is structured with a python script for each component used in the project (en
 - $final.py$: This is the py file where the principal loop is running. We import the other classes, initilize all the objects and make a graph with a method using matplotlib. At last, we do a serial connection with the Arduino, and, in the loop, always keep obtaining data to measure the angles and pass them to the kalman filter.
 
 ## Why do we use arduino? 
-At first, we tried to use our main controller (a Raspberry Pi), to count the ticks of the encoders, however, it was not possible to count all the number of ticks that were produced, we had a miscount. Looking for solutions, we found that the easiest way to avoid the problem as you can see in the answers of [Reading a high speed rotary encoder](https://electronics.stackexchange.com/questions/469008/reading-a-high- speed-rotary-encoder-with-a-raspberry-pi), is to use a microcontroller that is dedicated to counting the ticks of the encoders and, if possible, supporting high-speed hardware-level interrupts. Because we had at our disposal an Arduino Uno which met these characteristics, we chose to use it, therefore we must make a communication between Arduino and Raspberry.
+At first, we tried to use our main controller (a Raspberry Pi), to count the ticks of the encoders, however, it was not possible to count all the number of ticks that were produced, we had a miscount. Looking for solutions, we found that the easiest way to avoid the problem as you can see in the answers of [Reading a high speed rotary encoder](https://electronics.stackexchange.com/questions/469008/reading-a-high-speed-rotary-encoder-with-a-raspberry-pi), is to use a microcontroller that is dedicated to counting the ticks of the encoders and, if possible, supporting high-speed hardware-level interrupts. Because we had at our disposal an Arduino Uno which met these characteristics, we chose to use it, therefore we must make a communication between Arduino and Raspberry.
 
 ### How do we receive the data?
 The code in charge of the serial communication between Arduino and Python is encoder.py, from which we obtain the x and y position in millimeters of the robot (assuming an initial state (0, 0)), the angle (robot heading) expressed in degrees and with three decimal places and finally the state of the robot, a boolean that tells us if the robot is stationary or not.
@@ -81,3 +81,7 @@ flowchart LR
     F--> G[Result];
     G --> B;
 ```
+
+## Important
+
+Seeing as it is very important that the measurements of both the gyroscope and the encoders are well synchronized (timestamps), and not being able to achieve this using two microcontrollers Arduino and Raspberry Pi, it was decided to try to implement everything on the [Arduino microcontroller](https://github.com/LucasTakanori/PAE-HP/tree/main/Gyro_Encoders/Arduino_encoders_gyro). 
