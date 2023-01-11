@@ -1,0 +1,1 @@
+Dado que no habia tiempo suficiente para volver a hacer todo el codigo de Kalman en c++, se opto, por hacer un pequeño programa de python, un data logger de los datos que nos proporciona Arduino, para poder utilizar Kalman.
