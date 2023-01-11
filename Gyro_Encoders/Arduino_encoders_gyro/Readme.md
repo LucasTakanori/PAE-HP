@@ -2,6 +2,6 @@ Since there was not enough time to redo all the Kalman code in c++, we decided t
 
 The structure of this directory is the following:
 
-- Dentro de la carpeta [Arduino](https://github.com/LucasTakanori/PAE-HP/tree/main/Gyro_Encoders/Arduino_encoders_gyro/Arduino/ ) se encuentra todos los programs de Arduino asi como las librerias.
+- Inside the folder [Arduino](https://github.com/LucasTakanori/PAE-HP/tree/main/Gyro_Encoders/Arduino_encoders_gyro/Arduino/ ) you will find all the programs and libraries used for the Arduino board.
 
 - The program to store all the data comming from Arduino is the following [data_log.py](https://github.com/LucasTakanori/PAE-HP/tree/main/Gyro_Encoders/Arduino_encoders_gyro/data_log.py)
