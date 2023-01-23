@@ -23,4 +23,16 @@ The structure of this directory is the following:
 
   ## 2. Using the programs
 
-  Having at your disposal an Arduino microcontroller, go to the directory where your projects and libraries are stored, there put all the contents of the following folder [Arduino](https://github.com/LucasTakanori/PAE-HP/tree/main/Gyro_Encoders/Arduino_encoders_gyro/Arduino/ ). Once you have done this, you must open the project **MPU_6050_calibration** upload the project to the Arduino board, run the program, open the serial, once opened send any kay via serial to start, wait until the gyro values are at zero and then press the reset button on the Arduino, the serial will show the optimal offsets. These offsets, technically should be kept stored in the IMU, but if they lose power they are lost, for this reason it is important to replace them in the program **final_robot_main**.
+  - Having at your disposal an Arduino microcontroller, go to the directory where your projects and libraries are stored, there put all the contents of the following folder [Arduino](https://github.com/LucasTakanori/PAE-HP/tree/main/Gyro_Encoders/Arduino_encoders_gyro/Arduino/ ). 
+  - Open the project [MPU_6050_calibration](https://github.com/LucasTakanori/PAE-HP/tree/main/Gyro_Encoders/Arduino_encoders_gyro/Arduino/MPU_6050_calibration/) upload the project to the Arduino board, run the program, open the serial, once opened send any kay via serial to start, wait until the gyro values are at zero and then press the reset button on the Arduino, the serial will show the optimal offsets. These offsets, technically should be kept stored in the IMU, but if they lose power they are lost, keep the offsertts.
+  -  Open [final_robot_main](https://github.com/LucasTakanori/PAE-HP/tree/main/Gyro_Encoders/Arduino_encoders_gyro/Arduino/final_robot_main/), change the offset values from line 48 to 54 to the values obtained in calibration.
+  '''code 
+  sensor.setXAccelOffset(-337);
+  sensor.setYAccelOffset(344);
+  sensor.setZAccelOffset(1451);
+  sensor.setXGyroOffset(24);
+  sensor.setYGyroOffset(38);
+  sensor.setZGyroOffset(36);
+  '''
+  - Once all this is done, you can execute the program.
+  - If you want to store the values in a csv file. 
