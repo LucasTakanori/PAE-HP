@@ -9,6 +9,7 @@ Gyro/Encoders
 -------------
 
 This group is in charge of extracting the data from the robot movements. All this data will be filtered to get a better result. All the code used by this group will be stored in the folder [Gyro_Encoders](https://github.com/LucasTakanori/PAE-HP/tree/main/Gyro_Encoders).
+Final code and [Instructions](https://github.com/LucasTakanori/PAE-HP/tree/main/Gyro_Encoders/Arduino_encoders_gyro/ )
 
 Kalman Filter
 -------------
