@@ -35,5 +35,8 @@ The structure of this directory is the following:
   sensor.setZGyroOffset(36);
   ```
   
-  - Once all this is done, you can execute the program.
-  - If you want to store the values in a csv file. 
+  - Once all this is done, you can execute the program and view the data using serial.
+  - If you want to store the values in a csv file. Close the serial in Arduino and open [data_log.py](https://github.com/LucasTakanori/PAE-HP/tree/main/Gyro_Encoders/Arduino_encoders_gyro/data_log.py/ ), you will probably need to execute the order:
+  ```c
+  pip install csv
+  ```
