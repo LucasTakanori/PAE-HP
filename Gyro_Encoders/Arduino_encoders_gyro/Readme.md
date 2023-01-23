@@ -40,3 +40,4 @@ The structure of this directory is the following:
   ```c
   pip install csv
   ```
+  The constant MEAS_DUR_SEC and FS specifies the duration of the measurement, in case that it is shorter than the time specified pres Ctrl+C.
