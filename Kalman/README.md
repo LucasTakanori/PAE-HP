@@ -67,5 +67,9 @@ pip install filterpy
 (explicar porque usamos python y la libreria que vamos a hacer servir, además mencionar que hemos creado la clase Kalman que se inicializa de tal forma)
 
 
-5. Tests
-Execute test lectura to see the results of the data coming from the Phone
+5. Instruccions
+
+  1.- Descarregar el archiu final version and test.zip
+  2.- Obrir el fitcher "test 2 dim.py"
+  3.- Abans d'excuta-lo s'ha d'instalar la llibreria filterpy. Per instalar-la llegeix el punt 4.
+  5.- Executar el archiu per mirar les grafiques i els reultats. La informació es especifica de la prova 57,04º, el programa llegeix els fitxer .txt per extreure les dades. Per probar altres test es tindria que cambiar una mica el codi perquè el fitxes que hi han a les carpetes test, contenen altre tipus d'informació. El archiu kalman2d.py contè la definicio de la clase kalman.
