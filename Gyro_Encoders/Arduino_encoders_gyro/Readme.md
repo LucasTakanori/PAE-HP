@@ -19,7 +19,7 @@ The structure of this directory is the following:
   The others ois used are the SDA and SCL pins of the MPU, that must be connected to the respective pins of the Arduino board, in case of the Arduino UNO pins A4 and A5.
   
   The following image represents our connections ina a visual manner.
-  
+  <img width="290" alt="image" src="https://github.com/LucasTakanori/PAE-HP/blob/main/Gyro_Encoders/Arduino_encoders_gyro/imgs/Connections.png">
 
 ## Using the programs
 
