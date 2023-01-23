@@ -4,6 +4,11 @@ El zip amb tot el projecte de Virtual Studio Code es troba penjat [aqui](https:/
 
 ## Instruccions
 
-Executar el codi de "foto.py" (comanda: python3 foto.py). Sortira un video per pantalla, prèmer la tecla 'k' fer primera foto, clicar dins video reproduint-se i tornar a prèmer la tecla 'k' per fer segona foto al final video. Automàticament mostrarà angle per pantalla al terminal.
+Executar el codi de "video.py" (comanda: python3 video.py). Sortira un video per pantalla, prèmer la tecla 'k' fer començar agafar primer video i tornar a premee 'k' per agafar el primer troç de video. Automàticament mostrarà angle per pantalla al terminal.
 
 Prèmer la tecla 'q' en qualsevol moment per sortir del video.
+
+
+## Codi
+
+Si nomes voleu fer un cop d'ull codi, teniu el codi directament aqui penjat. Per executar-lo can instalar previament les llibrerites opencv-python i opencv-contrib-python amb la comanda pip install opencv-python i pip install opencv-contrib-python. Cal descarregar-se algun video també que trobarem a la carpeta del drive de PAE HP dins la carpeta videos. Dins de video.py caldra canviar el path cap a aquest video acabem de descarregar, si esta al mateix directori a cap = cv2.open("./nomVideo.MOV").
