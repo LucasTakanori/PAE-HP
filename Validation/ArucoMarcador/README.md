@@ -4,7 +4,7 @@ El zip amb tot el projecte de Virtual Studio Code es troba penjat [aqui](https:/
 
 ## Instruccions
 
-Executar el codi de "video.py" (comanda: python3 video.py). Sortira un video per pantalla, prèmer la tecla 'k' fer començar agafar primer video i tornar a premee 'k' per agafar el primer troç de video. Automàticament mostrarà angle per pantalla al terminal.
+Executar el codi de "video.py" (comanda: python3 video.py). Sortira un video per pantalla, prèmer la tecla 'k' fer començar agafar primer video i tornar a premer 'k' per acabar d'agafar el primer troç de video. Repetir al final del video per agafar el segon troç. Automàticament mostrarà angle per pantalla al terminal.
 
 Prèmer la tecla 'q' en qualsevol moment per sortir del video.
 
