@@ -11,4 +11,4 @@ Prèmer la tecla 'q' en qualsevol moment per sortir del video.
 
 ## Codi
 
-Si nomes voleu fer un cop d'ull codi, teniu el codi directament aqui penjat. Per executar-lo can instalar previament les llibrerites opencv-python i opencv-contrib-python amb la comanda pip install opencv-python i pip install opencv-contrib-python. Cal descarregar-se algun video també que trobarem a la carpeta del drive de PAE HP dins la carpeta videos. Dins de video.py caldra canviar el path cap a aquest video acabem de descarregar, si esta al mateix directori a cap = cv2.open("./nomVideo.MOV").
+Si nomes voleu fer un cop d'ull al codi, teniu el codi directament aqui penjat. Per executar-lo can instalar previament les llibreries opencv-python i opencv-contrib-python amb la comanda pip install opencv-python i pip install opencv-contrib-python. Cal descarregar-se algun video també que trobarem a la carpeta del drive de PAE HP dins la carpeta videos. Dins de video.py caldra canviar el path cap a aquest video que acabem de descarregar, si esta al mateix directori a cap = cv2.open("./nomVideo.MOV").
