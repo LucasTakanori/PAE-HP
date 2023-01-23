@@ -9,9 +9,11 @@ The structure of this directory is the following:
 # Install Guide
 
 ## Connections 
+  
   ### Encoders
+  
     For the encoders, you must connect ground and Vcc.
-    Other pins used in the Encoder are  channel A and channel B. We will first talk about the right wheel, channel A must be conected to pin **3** and channel B to pin **5**,  the connections of the left wheel are the following, channel A to pin **2** and channel B to pint **4**.
+    Other pins used in the Encoder are  channel A and channel B. We will first talk about the right wheel, channel A must be conected to pin **3** and channel B to pin       **5**,  the connections of the left wheel are the following, channel A to pin **2** and channel B to pint **4**.
     
   ### MPU 6050
 
