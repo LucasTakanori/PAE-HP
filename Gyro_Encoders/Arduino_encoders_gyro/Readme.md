@@ -15,6 +15,11 @@ The structure of this directory is the following:
   Other pins used in the Encoder are  channel A and channel B. We will first talk about the right wheel, channel A must be conected to pin **3** and channel B to pin       **5**,  the connections of the left wheel are the following, channel A to pin **2** and channel B to pint **4**.
     
   ### MPU 6050
+  For the MPU, you must also connect the ground and Vcc pins.
+  The others ois used are the SDA and SCL pins of the MPU, that must be connected to the respective pins of the Arduino board, in case of the Arduino UNO pins A4 and A5.
+  
+  The following image represents our connections ina a visual manner.
+  
 
 ## Using the programs
 
